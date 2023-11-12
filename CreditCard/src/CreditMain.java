@@ -53,11 +53,11 @@ public class CreditMain
 								int firstDigit = (int) (num[i]%10);
 								num[i]/=10;
 								num[i]+=firstDigit;
+								//System.out.println(num[i]);
 								
 							}
 					}
 				return num;
-				//test
 			}
 
 	}
