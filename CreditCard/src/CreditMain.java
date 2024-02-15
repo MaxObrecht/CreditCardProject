@@ -4,30 +4,29 @@ import java.util.Scanner;
 public class CreditMain
 	{
 		static ArrayList<Long> aList = new ArrayList<Long>();
+		static ArrayList<Long> bList = new ArrayList<Long>();
 
 		public static void main(String[] args)
 			{
-				int count = 0;
-				while (count < 100)
+				while (bList.size() < 100)
 					{
 						long fullNumber = randomCreditCardNumber();
 						long[] unchangedNum = loadArray(fullNumber);
 						long[] doubledArray = doubledArray(unchangedNum);
 						long[] addedDigits = addDigits(doubledArray);
 						divisibleByTen(addedDigits);
-						boolean list = list(addedDigits);
-
-						if (list)
-							{
-								count++;
-							}
 					}
-				
+				if (bList.size() == 100)
+					{
+						list();
+					}
+
 //				long fullNumber = creditCardNumber();
 //				long[] unchangedNum = loadArray(fullNumber);
 //				long[] doubledArray = doubledArray(unchangedNum);
 //				long[] addedDigits = addDigits(doubledArray);
 //				divisibleByTen(addedDigits);
+// 				list();
 
 			}
 
@@ -38,6 +37,7 @@ public class CreditMain
 				System.out.println("What is your 16 digit credit card number?");
 				long num = userLongInput.nextLong();
 
+				aList.add(num);
 				return num;
 			}
 
@@ -92,38 +92,32 @@ public class CreditMain
 				return num;
 			}
 
-		public static long[] divisibleByTen(long[] num)
+		public static void divisibleByTen(long[] num)
 			{
 				int sum = 0;
 				for (int i = 15; i >= 0; i--)
 					{
 						sum += num[i];
-						//System.out.println("sum is " + sum);
 					}
 
 				if (sum % 10 == 0)
 					{
-						System.out.println("works");
-						return num;
+						// System.out.println("works");
+						bList.add(aList.get(aList.size() - 1));
 					}
 				else
 					{
-						System.out.println("not");
-						return null;
+						// System.out.println("not");
+						aList.remove(aList.get(aList.size() - 1));
 					}
 			}
 
-		public static boolean list(long[] num)
+		public static void list()
 			{
-				if (num != null)
+				for (int i = 0; i < bList.size(); i++)
 					{
-						System.out.println(aList.get(aList.size() - 1));
-						return true;
-					}
-				else
-					{
-						aList.remove(aList.size());
-						return false;
+						System.out.print((i + 1) + ". ");
+						System.out.println(bList.get(i));
 					}
 			}
 
