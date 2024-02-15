@@ -10,6 +10,7 @@ public class CreditMain
 			{
 				while (bList.size() < 100)
 					{
+						//final?
 						long fullNumber = randomCreditCardNumber();
 						long[] unchangedNum = loadArray(fullNumber);
 						long[] doubledArray = doubledArray(unchangedNum);
